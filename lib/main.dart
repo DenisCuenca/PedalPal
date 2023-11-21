@@ -4,7 +4,13 @@ import './services/auth/widget_tree.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyBYRkuf_N_93H8x2ev3tp5enB6udShYrdQ",
+          appId: "1:796529585211:android:f9e72fdef6517ecebec01e",
+          messagingSenderId: "796529585211",
+          projectId: "pedalpal-2847b"));
   runApp(const MyApp());
 }
 

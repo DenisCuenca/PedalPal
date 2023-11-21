@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/auth/auth.dart';
+// import 'package:toast/toast.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  // ToastContext.init(context);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -21,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       await Auth().signInWithEmailAndPassword(
           email: _controllerEmail.text, password: _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
+      print(e);
       setState(() {
         errorMessage = e.message;
       });
@@ -54,8 +58,8 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _errorMessage() {
-    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  _errorMessage() {
+    if (errorMessage != null) {}
   }
 
   Widget _submitButton() {
@@ -79,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    _errorMessage();
     return Scaffold(
       appBar: AppBar(
         title: _title(),
@@ -93,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             _entryField("email", _controllerEmail),
             _entryField("password", _controllerPassword),
-            _errorMessage(),
+            // _errorMessage(),
             _submitButton(),
             _loginOrRegisterButton(),
           ],
