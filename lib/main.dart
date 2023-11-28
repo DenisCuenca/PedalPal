@@ -4,7 +4,7 @@ import './services/auth/widget_tree.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await Firebase.initializeApp(
       options: const FirebaseOptions(
           apiKey: "AIzaSyBYRkuf_N_93H8x2ev3tp5enB6udShYrdQ",
@@ -20,11 +20,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    const c = Color(0x00007e80);
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 0,
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(color: Colors.blue, elevation: 0),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0x004853),
+          brightness: Brightness.light,
+        ).copyWith(background: Colors.white),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: const WidgetTree(),
     );
   }
