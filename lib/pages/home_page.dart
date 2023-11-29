@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pedalpal/pages/dashboard.dart';
 import 'package:pedalpal/pages/map.dart';
+import 'package:pedalpal/pages/stadistics/stadistics.dart';
+import 'package:pedalpal/pages/user_page/user_page.dart';
 import '../services/auth/auth.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
@@ -36,7 +38,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _screensList = [Dashboard(), MapScreen()];
+    List<Widget> _screensList = [
+      Dashboard(),
+      MapScreen(),
+      Stadistics(),
+      UserPage()
+    ];
 
     return Scaffold(
       appBar: AppBar(
