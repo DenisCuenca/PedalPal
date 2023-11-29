@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/auth/auth.dart';
-// import 'package:toast/toast.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
-  // ToastContext.init(context);
 
   @override
   State<LoginPage> createState() => _LoginPageState();

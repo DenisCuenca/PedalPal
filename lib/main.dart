@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    const c = Color(0x00007e80);
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -28,7 +27,8 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
           elevation: 0,
         ),
-        bottomAppBarTheme: BottomAppBarTheme(color: Colors.blue, elevation: 0),
+        bottomAppBarTheme:
+            const BottomAppBarTheme(color: Colors.blue, elevation: 0),
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0x004853),
           brightness: Brightness.light,
