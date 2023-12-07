@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/auth/auth.dart';
-// import 'package:toast/toast.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
-  // ToastContext.init(context);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? errorMessage;
+  FirebaseAuthException? errorMessage;
   bool isLogin = true;
 
   final TextEditingController _controllerEmail = TextEditingController();
@@ -24,9 +21,9 @@ class _LoginPageState extends State<LoginPage> {
       await Auth().signInWithEmailAndPassword(
           email: _controllerEmail.text, password: _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
-      print(e);
+      print(e.code);
       setState(() {
-        errorMessage = e.message;
+        errorMessage = e;
       });
     }
   }
@@ -37,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
           email: _controllerEmail.text, password: _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
       setState(() {
-        errorMessage = e.message;
+        errorMessage = e;
       });
     }
   }
@@ -58,8 +55,16 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _errorMessage() {
-    if (errorMessage != null) {}
+  Widget _errorMessage() {
+    final errorMessage = this.errorMessage;
+    if (errorMessage != null) {
+      var mens = errorMessage.code;
+
+      return Text("$mens");
+    } else {
+      return Text("");
+    }
+    // return Text(errorMessage == null ? '' : 'Humm ? $errorMessage');
   }
 
   Widget _submitButton() {
@@ -98,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             _entryField("email", _controllerEmail),
             _entryField("password", _controllerPassword),
-            // _errorMessage(),
+            _errorMessage(),
             _submitButton(),
             _loginOrRegisterButton(),
           ],

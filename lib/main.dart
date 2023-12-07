@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './services/auth/widget_tree.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await Firebase.initializeApp(
       options: const FirebaseOptions(
           apiKey: "AIzaSyBYRkuf_N_93H8x2ev3tp5enB6udShYrdQ",
@@ -22,9 +23,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: GoogleFonts.mohaveTextTheme(
+          Theme.of(context).textTheme,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+        ),
+        bottomAppBarTheme:
+            const BottomAppBarTheme(color: Colors.blue, elevation: 0),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0x004853),
+          brightness: Brightness.light,
+        ).copyWith(background: Colors.white),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: const WidgetTree(),
     );
   }
