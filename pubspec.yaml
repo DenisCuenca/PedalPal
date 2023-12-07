@@ -39,6 +39,12 @@ dependencies:
   firebase_core: ^2.22.0
   firebase_auth: ^4.13.0
   molten_navigationbar_flutter: ^1.0.0
+  flutter_polyline_points: ^2.0.0
+  # google_maps_flutter: ^2.5.0
+  # location: ^5.0.3
+  # flutter_svg: ^2.0.9
+
+
 
 dev_dependencies:
   flutter_test:

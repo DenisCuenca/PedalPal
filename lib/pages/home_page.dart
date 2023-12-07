@@ -23,7 +23,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _title() {
-    return const Text("firebase Auth");
+    return const Row(
+      children: [
+        Text(
+          "Encuentra tu bici",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Icon(Icons.pedal_bike_rounded)
+      ],
+    );
   }
 
   Widget _userUid() {
@@ -64,8 +75,8 @@ class _HomePageState extends State<HomePage> {
       // ),
       body: _screensList[_selectedIndex],
       bottomNavigationBar: MoltenBottomNavigationBar(
-        barColor: Color.fromARGB(255, 241, 241, 241),
-        domeCircleColor: Color(0xFB6900),
+        barColor: Color.fromARGB(217, 248, 248, 248),
+        domeCircleColor: const Color(0xFB6900),
         selectedIndex: _selectedIndex,
         onTabChange: (clickedIndex) {
           setState(() {
@@ -74,24 +85,24 @@ class _HomePageState extends State<HomePage> {
         },
         tabs: [
           MoltenTab(
-            icon: Icon(
-              Icons.home_rounded,
+            icon: const Icon(
+              Icons.home_outlined,
             ),
             selectedColor: Colors.white,
             unselectedColor: const Color.fromARGB(255, 36, 36, 36),
           ),
           MoltenTab(
-            icon: Icon(Icons.location_on_rounded),
+            icon: const Icon(Icons.location_on_outlined),
             selectedColor: Colors.white,
             unselectedColor: const Color.fromARGB(255, 36, 36, 36),
           ),
           MoltenTab(
-            icon: Icon(Icons.bar_chart_rounded, color: Colors.black),
+            icon: const Icon(Icons.bar_chart_outlined),
             selectedColor: Colors.white,
             unselectedColor: const Color.fromARGB(255, 36, 36, 36),
           ),
           MoltenTab(
-            icon: Icon(Icons.person_3_rounded, color: Colors.black),
+            icon: const Icon(Icons.person_3_outlined),
             selectedColor: Colors.white,
             unselectedColor: const Color.fromARGB(255, 36, 36, 36),
           ),
