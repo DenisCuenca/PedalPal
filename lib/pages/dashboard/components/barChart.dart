@@ -43,6 +43,7 @@ class MyBarChart extends StatelessWidget {
               //     bottom: BorderSide(width: 1),
               //   ),
               // ),
+              titlesData: titlesDAta,
               borderData: borderData,
               groupsSpace: 10,
               barGroups: barGroups,
@@ -78,8 +79,8 @@ BarTouchData get batTouchData => BarTouchData(
 
 Widget getTitles(double value, TitleMeta meta) {
   final style = const TextStyle(
-    color: Colors.blueAccent,
-    fontWeight: FontWeight.bold,
+    color: Colors.black,
+    fontWeight: FontWeight.w100,
     fontSize: 14,
   );
   String text;
@@ -126,27 +127,27 @@ FlTitlesData get titlesDAta => const FlTitlesData(
         // reservedSize: 30,
         getTitlesWidget: getTitles,
       )),
-      leftTitles: AxisTitles(
-        sideTitles: SideTitles(showTitles: false),
-      ),
+      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       topTitles: AxisTitles(
-        sideTitles: SideTitles(showTitles: false),
+        sideTitles: SideTitles(
+          showTitles: false,
+        ),
       ),
       rightTitles: AxisTitles(
-        sideTitles: SideTitles(showTitles: false),
-      ),
+          // sideTitles: SideTitles(showTitles: false),
+          sideTitles: SideTitles(showTitles: false)),
     );
 
 FlBorderData get borderData => FlBorderData(show: false);
 
-LinearGradient get _barGradient => const LinearGradient(
-      colors: [
-        Colors.blueAccent,
-        Colors.redAccent,
-      ],
-      begin: Alignment.bottomCenter,
-      end: Alignment.topCenter,
-    );
+// LinearGradient get _barGradient => const LinearGradient(
+//       colors: [
+//         Colors.blueAccent,
+//         Colors.redAccent,
+//       ],
+//       begin: Alignment.bottomCenter,
+//       end: Alignment.topCenter,
+//     );
 
 List<BarChartGroupData> get barGroups => [
       BarChartGroupData(
