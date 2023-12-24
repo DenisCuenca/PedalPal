@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -27,7 +28,7 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>pedalpal</title>
   <link rel="manifest" href="manifest.json">
@@ -38,30 +39,31 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6-wVGFviU3DNgspAc2BuEI-8-7vGUMBA"></script>
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+
+
 </head>
+
 <body>
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
             appRunner.runApp();
           });
         }
       });
     });
-    
+
   </script>
-  <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6-wVGFviU3DNgspAc2BuEI-8-7vGUMBA&libraries=drawing">
-  </script>
-  <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6-wVGFviU3DNgspAc2BuEI-8-7vGUMBA&libraries=drawing,visualization,places">
-  </script>
+
 </body>
+
 </html>

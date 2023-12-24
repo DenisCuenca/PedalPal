@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pedalpal/pages/history/my_bicicles.dart';
+import 'package:pedalpal/pages/home_page.dart';
 import './services/auth/widget_tree.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,6 +24,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        "home": (context) => HomePage(),
+        "history": (context) => MyBikes(),
+      },
       theme: ThemeData(
         textTheme: GoogleFonts.mohaveTextTheme(
           Theme.of(context).textTheme,
