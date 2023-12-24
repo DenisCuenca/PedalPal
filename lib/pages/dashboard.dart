@@ -151,39 +151,44 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
               ),
-              Container(
-                height: 120,
-                width: 110,
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 239, 239, 239),
-                    borderRadius: BorderRadius.circular(7)),
-                child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: const Icon(Icons.cyclone_outlined,
-                            color: Colors.orange),
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(7)),
-                      ),
-                      const Text(
-                        "Utiliza una bicicleta",
-                        style: TextStyle(
-                            fontSize: 8, fontWeight: FontWeight.normal),
-                      ),
-                      Text(
-                        "Escanear Qr",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue[900]),
-                      ),
-                    ],
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "history");
+                },
+                child: Ink(
+                  height: 120,
+                  width: 110,
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 239, 239, 239),
+                      borderRadius: BorderRadius.circular(7)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: const Icon(Icons.cyclone_outlined,
+                              color: Colors.orange),
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(7)),
+                        ),
+                        const Text(
+                          "Bicicletas utilizadas",
+                          style: TextStyle(
+                              fontSize: 8, fontWeight: FontWeight.normal),
+                        ),
+                        Text(
+                          "Mis Bicibletas",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue[900]),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -209,12 +214,12 @@ class _DashboardState extends State<Dashboard> {
                             borderRadius: BorderRadius.circular(7)),
                       ),
                       const Text(
-                        "Utiliza una bicicleta",
+                        "Confi. forma de pagos",
                         style: TextStyle(
                             fontSize: 8, fontWeight: FontWeight.normal),
                       ),
                       Text(
-                        "Escanear Qr",
+                        "Config Pago",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.blue[900]),
