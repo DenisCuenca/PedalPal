@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:pedalpal/pages/qr_scann/qrScann.dart';
 
-class BikeDetail extends StatelessWidget {
-  const BikeDetail({super.key});
+class RentDetail extends StatelessWidget {
+  const RentDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -160,36 +160,46 @@ class BikeDetail extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 70,
+                      height: 40,
                     ),
                     Center(
-                      child: Container(
-                        height: 200,
-                        width: 200,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.amber,
-                              width: 4,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 9,
-                                spreadRadius: 3,
-                                blurStyle: BlurStyle.normal,
-                              )
-                            ]),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("45min"),
-                              Text("3.5 km"),
-                            ],
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Image.asset("qr-img.png"),
                           ),
-                        ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Escanea el QR",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w800, fontSize: 24),
+                          ),
+                          Container(
+                            width: 320,
+                            child: Text(
+                              "Para desbloquear este equipo escanea el qr, ubicado en el volante de la misma",
+                              style: TextStyle(),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ScannQr(),
+                                  ));
+                            },
+                            child: Text("Escanear"),
+                          )
+                        ],
                       ),
                     ),
                   ],

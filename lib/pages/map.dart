@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pedalpal/pages/bikeDetail/rentBike.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({super.key});
@@ -74,7 +75,12 @@ class MapScreen extends StatelessWidget {
                       ],
                     ),
                     ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => RentDetail())));
+                        },
                         icon: Icon(Icons.arrow_right),
                         label: Text("Solicitar Bicicleta"),
                         style: ButtonStyle(
