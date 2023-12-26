@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:pedalpal/pages/dashboard/components/barChart.dart';
+import 'package:pedalpal/pages/payment/paymentConf.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -192,39 +193,48 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
               ),
-              Container(
-                height: 120,
-                width: 110,
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 239, 239, 239),
-                    borderRadius: BorderRadius.circular(7)),
-                child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: const Icon(Icons.credit_card_rounded,
-                            color: Colors.purple),
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(7)),
-                      ),
-                      const Text(
-                        "Confi. forma de pagos",
-                        style: TextStyle(
-                            fontSize: 8, fontWeight: FontWeight.normal),
-                      ),
-                      Text(
-                        "Config Pago",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue[900]),
-                      ),
-                    ],
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PaymentConf(),
+                      ));
+                },
+                child: Ink(
+                  height: 120,
+                  width: 110,
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 239, 239, 239),
+                      borderRadius: BorderRadius.circular(7)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: const Icon(Icons.credit_card_rounded,
+                              color: Colors.purple),
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(7)),
+                        ),
+                        const Text(
+                          "Confi. forma de pagos",
+                          style: TextStyle(
+                              fontSize: 8, fontWeight: FontWeight.normal),
+                        ),
+                        Text(
+                          "Config Pago",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue[900]),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
