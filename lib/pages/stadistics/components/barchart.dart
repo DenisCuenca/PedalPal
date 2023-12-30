@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class MyBarChart extends StatelessWidget {
-  const MyBarChart({super.key});
+class UserBarChart extends StatelessWidget {
+  const UserBarChart({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +18,8 @@ class MyBarChart extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Tus reguistros"),
-              Text(
-                "Ver más",
-                style: TextStyle(color: Colors.blueAccent),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Expanded(
+          AspectRatio(
+            aspectRatio: 2,
             child: BarChart(BarChartData(
               barTouchData: batTouchData,
               // borderData: FlBorderData(
@@ -53,7 +41,7 @@ class MyBarChart extends StatelessWidget {
 
               // maxY: 2,
             )),
-          ),
+          )
         ],
       ),
     );
@@ -192,9 +180,9 @@ class BarChartSample extends StatefulWidget {
 class _BarChartSampleState extends State<BarChartSample> {
   @override
   Widget build(BuildContext context) {
-    return const AspectRatio(
-      aspectRatio: 1.6,
-      child: MyBarChart(),
+    return AspectRatio(
+      aspectRatio: 1,
+      child: UserBarChart(),
     );
   }
 }

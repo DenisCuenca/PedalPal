@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pedalpal/pages/dashboard/components/barChart.dart';
+import 'package:pedalpal/pages/stadistics/components/chartCard.dart';
+import 'components/lineChart.dart';
 
 class Stadistics extends StatelessWidget {
   const Stadistics({super.key});
@@ -7,7 +10,35 @@ class Stadistics extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      child: Text("Stadistics"),
+      // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Column(
+        children: [
+          const Row(
+            children: [
+              Text(
+                "Tus Estadisticas  ",
+                style: TextStyle(fontSize: 24),
+              ),
+              Icon(Icons.pedal_bike_rounded)
+            ],
+          ),
+          const SizedBox(
+              // height: ,
+              ),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(5),
+              children: [
+                // ChartCard(),
+                // MyLineChart(),
+                // ChartCard(),
+                // ChartCard(),
+              ],
+            ),
+          )
+        ],
+      ),
     ));
   }
 }
