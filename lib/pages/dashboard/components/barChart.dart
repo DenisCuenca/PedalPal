@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -16,18 +18,9 @@ class MyBarChart extends StatelessWidget {
     //   maxY: 20,
     // ));
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Tus reguistros"),
-              Text(
-                "Ver más",
-                style: TextStyle(color: Colors.blueAccent),
-              ),
-            ],
-          ),
           SizedBox(
             height: 50,
           ),
@@ -44,7 +37,7 @@ class MyBarChart extends StatelessWidget {
               // ),
               titlesData: titlesDAta,
               borderData: borderData,
-              groupsSpace: 10,
+              groupsSpace: 1,
               barGroups: barGroups,
               alignment: BarChartAlignment.spaceAround,
               gridData: const FlGridData(
@@ -78,9 +71,9 @@ BarTouchData get batTouchData => BarTouchData(
 
 Widget getTitles(double value, TitleMeta meta) {
   final style = const TextStyle(
-    color: Colors.black,
+    color: Colors.grey,
     fontWeight: FontWeight.w100,
-    fontSize: 14,
+    fontSize: 13,
   );
   String text;
   switch (value.toInt()) {
@@ -150,33 +143,39 @@ FlBorderData get borderData => FlBorderData(show: false);
 
 List<BarChartGroupData> get barGroups => [
       BarChartGroupData(
-          x: 0,
-          barRods: [BarChartRodData(toY: 2, color: Colors.black)],
-          showingTooltipIndicators: [0]),
+        x: 0,
+        barRods: [
+          BarChartRodData(toY: 1.2, color: Colors.black, width: 4),
+        ],
+        showingTooltipIndicators: [0],
+      ),
       BarChartGroupData(
           x: 1,
-          barRods: [BarChartRodData(toY: 2, color: Colors.black)],
+          barRods: [BarChartRodData(toY: 2, color: Colors.black, width: 4)],
           showingTooltipIndicators: [0]),
       BarChartGroupData(x: 2, barRods: [
-        BarChartRodData(toY: 2.6, color: Color.fromARGB(255, 36, 96, 149))
+        BarChartRodData(
+            toY: 2.6, color: Color.fromARGB(255, 36, 96, 149), width: 4)
       ], showingTooltipIndicators: [
         0
       ]),
       BarChartGroupData(
           x: 3,
-          barRods: [BarChartRodData(toY: 1, color: Colors.grey)],
+          barRods: [BarChartRodData(toY: 1, color: Colors.grey, width: 4)],
           showingTooltipIndicators: [0]),
       BarChartGroupData(x: 4, barRods: [
-        BarChartRodData(toY: 1, color: Color.fromARGB(255, 36, 96, 149))
+        BarChartRodData(
+            toY: 1, color: Color.fromARGB(255, 36, 96, 149), width: 4)
       ], showingTooltipIndicators: [
         0
       ]),
       BarChartGroupData(
           x: 5,
-          barRods: [BarChartRodData(toY: 3, color: Colors.blue)],
+          barRods: [BarChartRodData(toY: 3, color: Colors.blue, width: 4)],
           showingTooltipIndicators: [0]),
       BarChartGroupData(x: 6, barRods: [
-        BarChartRodData(toY: 1, color: Color.fromARGB(255, 255, 94, 0))
+        BarChartRodData(
+            toY: 1, color: Color.fromARGB(255, 255, 94, 0), width: 4)
       ], showingTooltipIndicators: [
         0
       ]),

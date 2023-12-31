@@ -71,61 +71,295 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: myPosition == null
-            ? const Center(child: CircularProgressIndicator())
-            : FlutterMap(
-                options: MapOptions(
-                  initialCenter: myPosition!,
-                  initialZoom: 15,
+    return Stack(
+      alignment: Alignment.bottomLeft,
+      children: [
+        Container(
+            child: myPosition == null
+                ? const Center(child: CircularProgressIndicator())
+                : FlutterMap(
+                    options: MapOptions(
+                      initialCenter: myPosition!,
+                      initialZoom: 15,
+                    ),
+                    children: [
+                      TileLayer(
+                        urlTemplate:
+                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        userAgentPackageName: 'com.example.app',
+                      ),
+                      MarkerLayer(
+                        markers: [
+                          Marker(
+                              point: myPosition!,
+                              child: Container(
+                                // height: 60,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.location_pin,
+                                  // size: 50,
+                                  color: Colors.purple,
+                                ),
+                              )),
+                          Marker(
+                              point: const LatLng(-3.9705911, -79.2151694),
+                              child: Container(
+                                // height: 60,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.location_pin,
+                                  // size: 50,
+                                  color: Colors.purple,
+                                ),
+                              )),
+                        ],
+                      ),
+                      PolylineLayer(
+                        polylineCulling: false,
+                        polylines: [
+                          Polyline(
+                              points: points,
+                              color: Colors.purple,
+                              strokeWidth: 4),
+                        ],
+                      ),
+                    ],
+                  )),
+        Container(
+          // margin: const EdgeInsets.only(left: 25),
+          height: 280,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              SizedBox(
+                width: 25,
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                width: 200,
+                margin: const EdgeInsets.only(right: 20, bottom: 10),
+                decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 5,
+                        spreadRadius: 3,
+                        blurStyle: BlurStyle.normal,
+                        offset: const Offset(0, 3),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(25)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              "power-green.png",
+                            ),
+                            const Text(
+                              "Energía\n40%",
+                              style: TextStyle(fontSize: 10),
+                            )
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.control_point_sharp,
+                              color: Colors.grey,
+                            ))
+                      ],
+                    ),
+                    Image.asset(
+                      "bike-icons.png",
+                      width: 90,
+                    ),
+                    const Column(
+                      children: [
+                        Text(
+                          "Plaza de San Sabastián",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        Text(
+                          "A 3km de tu ubicación",
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => const RentDetail())));
+                        },
+                        icon: const Icon(Icons.arrow_right),
+                        label: const Text("Solicitar Bicicleta"),
+                        style: const ButtonStyle(
+
+                            // MaterialColor(Colors.red, Colors.red)
+                            )),
+                  ],
                 ),
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.example.app',
-                  ),
-                  MarkerLayer(
-                    markers: [
-                      Marker(
-                          point: myPosition!,
-                          child: Container(
-                            // height: 60,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.location_pin,
-                              // size: 50,
-                              color: Colors.purple,
-                            ),
-                          )),
-                      Marker(
-                          point: const LatLng(-3.9705911, -79.2151694),
-                          child: Container(
-                            // height: 60,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.location_pin,
-                              // size: 50,
-                              color: Colors.purple,
-                            ),
-                          )),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                width: 200,
+                margin: const EdgeInsets.only(right: 20, bottom: 10),
+                decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 5,
+                        spreadRadius: 3,
+                        blurStyle: BlurStyle.normal,
+                        offset: const Offset(0, 3),
+                      )
                     ],
-                  ),
-                  PolylineLayer(
-                    polylineCulling: false,
-                    polylines: [
-                      Polyline(
-                          points: points, color: Colors.purple, strokeWidth: 4),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              "power-yellow.png",
+                            ),
+                            const Text(
+                              "Energía\n40%",
+                              style: TextStyle(fontSize: 10),
+                            )
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.control_point_sharp,
+                              color: Colors.grey,
+                            ))
+                      ],
+                    ),
+                    Image.asset(
+                      "bike-icons.png",
+                      width: 90,
+                    ),
+                    const Column(
+                      children: [
+                        Text(
+                          "Plaza de San Sabastián",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        Text(
+                          "A 3km de tu ubicación",
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton.icon(
+                        onPressed: () {},
+                        icon: const Icon(Icons.arrow_right),
+                        label: const Text("Solicitar Bicicleta"),
+                        style: const ButtonStyle(
+
+                            // MaterialColor(Colors.red, Colors.red)
+                            )),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                width: 200,
+                margin: const EdgeInsets.only(right: 20, bottom: 10),
+                decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 5,
+                        spreadRadius: 3,
+                        blurStyle: BlurStyle.normal,
+                        offset: const Offset(0, 3),
+                      )
                     ],
-                  ),
-                ],
-              ));
+                    borderRadius: BorderRadius.circular(25)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              "power-yellow.png",
+                            ),
+                            const Text(
+                              "Energía\n40%",
+                              style: TextStyle(fontSize: 10),
+                            )
+                          ],
+                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.control_point_sharp,
+                              color: Colors.grey,
+                            ))
+                      ],
+                    ),
+                    Image.asset(
+                      "bike-icons.png",
+                      width: 90,
+                    ),
+                    const Column(
+                      children: [
+                        Text(
+                          "Plaza de San Sabastián",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        Text(
+                          "A 3km de tu ubicación",
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton.icon(
+                        onPressed: () {},
+                        icon: const Icon(Icons.arrow_right),
+                        label: const Text("Solicitar Bicicleta"),
+                        style: const ButtonStyle(
+
+                            // MaterialColor(Colors.red, Colors.red)
+                            )),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
     // Column(
     //   mainAxisAlignment: MainAxisAlignment.end,
     //   children: [

@@ -23,6 +23,8 @@ class _DashboardState extends State<Dashboard> {
   String qr_result = "no se ha escaneado, tav";
 
   List listOfPoints = [];
+  double routeDistance = 0.0;
+  double routeDuration = 0.0;
 
   // Conversion of listOfPoints into LatLng(Latitude, Longitude) list of points
   List<LatLng> points = [];
@@ -36,6 +38,12 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
+
+        routeDistance =
+            data['features'][0]['properties']['summary']["distance"];
+        routeDuration =
+            data['features'][0]['properties']['summary']["duration"];
+
         listOfPoints = data['features'][0]['geometry']['coordinates'];
         points = listOfPoints
             .map((p) => LatLng(p[1].toDouble(), p[0].toDouble()))
@@ -93,170 +101,193 @@ class _DashboardState extends State<Dashboard> {
         Flexible(
           fit: FlexFit.tight,
           flex: 2,
-          child: Container(
-              // height: 440,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: Colors.black12,
-              ),
-              // child: MapboxMap(
-              //   initialCameraPosition:
-              //       CameraPosition(target: _pGooglePlex, zoom: 15),
+          child: Stack(
+            children: [
+              Container(
+                  // height: 440,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    color: Colors.black12,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 4,
+                        spreadRadius: 2,
+                        blurStyle: BlurStyle.normal,
+                        offset: const Offset(1, 2),
+                      )
+                    ],
+                  ),
+                  // child: MapboxMap(
+                  //   initialCameraPosition:
+                  //       CameraPosition(target: _pGooglePlex, zoom: 15),
 
-              // ),
-              child: myPosition == null
-                  ? const Center(child: CircularProgressIndicator())
-                  : FlutterMap(
-                      options: MapOptions(
-                        initialCenter: myPosition!,
-                        initialZoom: 15,
+                  // ),
+                  child: myPosition == null
+                      ? const Center(child: CircularProgressIndicator())
+                      : FlutterMap(
+                          options: MapOptions(
+                            initialCenter: myPosition!,
+                            initialZoom: 15,
+                          ),
+                          children: [
+                            TileLayer(
+                              urlTemplate:
+                                  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                              userAgentPackageName: 'com.example.app',
+                            ),
+                            MarkerLayer(
+                              markers: [
+                                Marker(
+                                    point: myPosition!,
+                                    child: Container(
+                                      // height: 60,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.location_pin,
+                                        // size: 50,
+                                        color: Colors.purple,
+                                      ),
+                                    )),
+                                Marker(
+                                    point:
+                                        const LatLng(-3.9705911, -79.2151694),
+                                    child: Container(
+                                      // height: 60,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.location_pin,
+                                        // size: 50,
+                                        color: Colors.purple,
+                                      ),
+                                    )),
+                              ],
+                            ),
+                            PolylineLayer(
+                              polylineCulling: false,
+                              polylines: [
+                                Polyline(
+                                    points: points,
+                                    color: Colors.purple,
+                                    strokeWidth: 4),
+                              ],
+                            ),
+                          ],
+                        )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 20, 136, 146),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const Icon(
+                                Icons.location_on_rounded,
+                                color: Colors.white,
+                              ),
+                              Column(
+                                children: [
+                                  const Text(
+                                    "Lugar",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100),
+                                  ),
+                                  Text(
+                                    "$routeDistance pas",
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ]),
                       ),
-                      children: [
-                        TileLayer(
-                          urlTemplate:
-                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          userAgentPackageName: 'com.example.app',
-                        ),
-                        MarkerLayer(
-                          markers: [
-                            Marker(
-                                point: myPosition!,
-                                child: Container(
-                                  // height: 60,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
+                      Container(
+                        height: 100,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 20, 136, 146),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Icon(
+                                Icons.access_time_filled_outlined,
+                                color: Colors.white,
+                              ),
+                              Column(
+                                children: [
+                                  const Text(
+                                    "Tiempo",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100),
                                   ),
-                                  child: const Icon(
-                                    Icons.location_pin,
-                                    // size: 50,
-                                    color: Colors.purple,
+                                  Text(
+                                    "${(routeDuration / 60).round()} min",
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                )),
-                            Marker(
-                                point: const LatLng(-3.9705911, -79.2151694),
-                                child: Container(
-                                  // height: 60,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
+                                ],
+                              ),
+                            ]),
+                      ),
+                      Container(
+                        height: 100,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 20, 136, 146),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.battery_charging_full_outlined,
+                                color: Colors.white,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    "bateria",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100),
                                   ),
-                                  child: const Icon(
-                                    Icons.location_pin,
-                                    // size: 50,
-                                    color: Colors.purple,
+                                  Text(
+                                    "45%",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                )),
-                          ],
-                        ),
-                        PolylineLayer(
-                          polylineCulling: false,
-                          polylines: [
-                            Polyline(
-                                points: points,
-                                color: Colors.purple,
-                                strokeWidth: 4),
-                          ],
-                        ),
-                      ],
-                    )
-
-              // padding: const EdgeInsets.only(bottom: 25),
-              // child: Padding(
-              //   padding: const EdgeInsets.only(bottom: 30),
-              //   child: Row(
-              //       crossAxisAlignment: CrossAxisAlignment.end,
-              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //       children: [
-              //         FlutterMap(
-              //           options: MapOptions(
-              //             initialCenter: LatLng(51.509364, -0.128928),
-              //             initialZoom: 9.2,
-              //           ),
-              //           children: [
-              //             TileLayer(
-              //               urlTemplate:
-              //                   'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              //               userAgentPackageName: 'com.example.app',
-              //             ),
-              //           ],
-              //         ),
-              //         Container(
-              //           height: 100,
-              //           width: 90,
-              //           decoration: BoxDecoration(
-              //               color: const Color.fromARGB(255, 25, 163, 176),
-              //               borderRadius: BorderRadius.circular(10)),
-              //           child: const Column(
-              //               mainAxisAlignment: MainAxisAlignment.center,
-              //               children: [
-              //                 Icon(
-              //                   Icons.local_activity,
-              //                   color: Colors.white,
-              //                 ),
-              //                 Text(
-              //                   "Lugar",
-              //                   style: TextStyle(color: Colors.white),
-              //                 ),
-              //                 Text(
-              //                   "4.5km",
-              //                   style: TextStyle(color: Colors.white),
-              //                 ),
-              //               ]),
-              //         ),
-              //         Container(
-              //           height: 100,
-              //           width: 90,
-              //           decoration: BoxDecoration(
-              //               color: const Color.fromARGB(255, 25, 163, 176),
-              //               borderRadius: BorderRadius.circular(10)),
-              //           child: const Column(
-              //               mainAxisAlignment: MainAxisAlignment.center,
-              //               children: [
-              //                 Icon(
-              //                   Icons.local_activity,
-              //                   color: Colors.white,
-              //                 ),
-              //                 Text(
-              //                   "Lugar",
-              //                   style: TextStyle(color: Colors.white),
-              //                 ),
-              //                 Text(
-              //                   "4.5km",
-              //                   style: TextStyle(color: Colors.white),
-              //                 ),
-              //               ]),
-              //         ),
-              //         Container(
-              //           height: 100,
-              //           width: 90,
-              //           decoration: BoxDecoration(
-              //               color: const Color.fromARGB(255, 25, 163, 176),
-              //               borderRadius: BorderRadius.circular(10)),
-              //           child: const Column(
-              //               mainAxisAlignment: MainAxisAlignment.center,
-              //               children: [
-              //                 Icon(
-              //                   Icons.local_activity,
-              //                   color: Colors.white,
-              //                 ),
-              //                 Text(
-              //                   "Lugar",
-              //                   style: TextStyle(color: Colors.white),
-              //                 ),
-              //                 Text(
-              //                   "4.5km",
-              //                   style: TextStyle(color: Colors.white),
-              //                 ),
-              //               ]),
-              //         ),
-              //       ]),
-              // ),
-              ),
-        ),
-
-        const SizedBox(
-          height: 15,
+                                ],
+                              ),
+                            ]),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  )
+                ],
+              )
+            ],
+          ),
         ),
 
         Flexible(
@@ -268,8 +299,7 @@ class _DashboardState extends State<Dashboard> {
                 Flexible(
                   // fit: FlexFit.tight,
                   child: InkWell(
-                    // onTap: () => scanQr(),
-                    onTap: () => getCoordinates(),
+                    onTap: () => scanQr(),
                     child: Ink(
                       height: 120,
                       // width: 110,
@@ -401,8 +431,15 @@ class _DashboardState extends State<Dashboard> {
               ],
             )),
 
-        const SizedBox(
-          height: 15,
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Tus reguistros"),
+            Text(
+              "Ver más",
+              style: TextStyle(color: Colors.blueAccent),
+            ),
+          ],
         ),
         const Flexible(flex: 1, fit: FlexFit.tight, child: MyBarChart()),
 
