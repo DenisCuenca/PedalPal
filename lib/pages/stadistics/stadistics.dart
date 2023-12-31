@@ -28,9 +28,12 @@ class Stadistics extends StatelessWidget {
               ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                // ChartCard(),
+                const ChartCard(),
+                const ChartCard(),
+                const ChartCard(),
                 // MyLineChart(),
                 // ChartCard(),
                 // ChartCard(),

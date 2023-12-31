@@ -29,10 +29,16 @@ class ChartCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.social_distance),
+                Icon(
+                  Icons.social_distance,
+                  color: Colors.grey,
+                ),
                 Text(
                   "  Distancia recorrida",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
