@@ -143,7 +143,7 @@ List<BarChartGroupData> get barGroups => [
       BarChartGroupData(
         x: 0,
         barRods: [
-          BarChartRodData(toY: 1.2, color: Colors.black, width: 4),
+          BarChartRodData(toY: 3, color: Colors.black, width: 4),
         ],
         showingTooltipIndicators: [0],
       ),

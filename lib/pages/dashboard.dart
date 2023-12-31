@@ -13,8 +13,10 @@ import '../services/openStreetRouteService.dart';
 import "package:geolocator/geolocator.dart";
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+  final Function(int) funcionCallback;
+  const Dashboard({super.key, required this.funcionCallback});
 
+  // Function(int num) callback;
   @override
   State<Dashboard> createState() => _DashboardState();
 }
@@ -431,13 +433,18 @@ class _DashboardState extends State<Dashboard> {
               ],
             )),
 
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Tus reguistros"),
-            Text(
-              "Ver más",
-              style: TextStyle(color: Colors.blueAccent),
+            GestureDetector(
+              onTap: () {
+                widget.funcionCallback(2);
+              },
+              child: Text(
+                "Ver más",
+                style: TextStyle(color: Colors.blueAccent),
+              ),
             ),
           ],
         ),

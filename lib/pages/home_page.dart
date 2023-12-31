@@ -49,11 +49,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    void changeNavIndex(int num) {
+      setState(() {
+        _selectedIndex = num;
+      });
+      print("dsadasdasdas");
+    }
+
     List<Widget> _screensList = [
-      Dashboard(),
-      MapScreen(),
-      Stadistics(),
-      UserPage()
+      Dashboard(funcionCallback: changeNavIndex),
+      const MapScreen(),
+      const Stadistics(),
+      const UserPage(),
     ];
 
     return Scaffold(
@@ -75,7 +82,7 @@ class _HomePageState extends State<HomePage> {
       // ),
       body: _screensList[_selectedIndex],
       bottomNavigationBar: MoltenBottomNavigationBar(
-        barColor: Color.fromARGB(217, 248, 248, 248),
+        barColor: const Color.fromARGB(217, 248, 248, 248),
         domeCircleColor: const Color(0xFB6900),
         selectedIndex: _selectedIndex,
         onTabChange: (clickedIndex) {
