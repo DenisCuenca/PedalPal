@@ -11,10 +11,10 @@ Future<void> main() async {
 
   await Firebase.initializeApp(
       options: const FirebaseOptions(
-          apiKey: "AIzaSyBYRkuf_N_93H8x2ev3tp5enB6udShYrdQ",
-          appId: "1:796529585211:android:f9e72fdef6517ecebec01e",
-          messagingSenderId: "796529585211",
-          projectId: "pedalpal-2847b"));
+          apiKey: "AIzaSyAScF7K5L6rskqbN2JVXHh5WsQbfQ7pkx4",
+          appId: "1:24383345107:android:51019411b499444a949f26",
+          messagingSenderId: "24383345107",
+          projectId: "pedalpal-77503"));
   runApp(const MyApp());
 }
 

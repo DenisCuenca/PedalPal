@@ -1,3 +1,4 @@
+import '../services/auth/controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/auth/auth.dart';
@@ -55,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
       print("Error logging in with Facebook: $e");
     }
   }
+
 
   Widget _title() {
     return const Text("Firebase Auth");

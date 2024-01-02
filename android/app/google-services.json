@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "796529585211",
-    "project_id": "pedalpal-2847b",
-    "storage_bucket": "pedalpal-2847b.appspot.com"
+    "project_number": "24383345107",
+    "project_id": "pedalpal-77503",
+    "storage_bucket": "pedalpal-77503.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:796529585211:android:f9e72fdef6517ecebec01e",
+        "mobilesdk_app_id": "1:24383345107:android:51019411b499444a949f26",
         "android_client_info": {
           "package_name": "com.example.pedalpal"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBYRkuf_N_93H8x2ev3tp5enB6udShYrdQ"
+          "current_key": "AIzaSyAScF7K5L6rskqbN2JVXHh5WsQbfQ7pkx4"
         }
       ],
       "services": {
