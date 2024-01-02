@@ -134,6 +134,10 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           children: [
                             TileLayer(
+                              additionalOptions: const {
+                                "accessToken": "",
+                                "id": "mapbox.mapbox-streets-v7"
+                              },
                               urlTemplate:
                                   'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                               userAgentPackageName: 'com.example.app',

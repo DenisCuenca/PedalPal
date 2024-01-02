@@ -1,3 +1,4 @@
+import '../services/auth/controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/auth/auth.dart';
@@ -38,6 +39,10 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
+
+  // saveNewUser() async {
+  //   UserController.instance.createUser(user);
+  // }
 
   Widget _title() {
     return const Text("firabase auth");
