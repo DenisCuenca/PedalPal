@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pedalpal/pages/history/my_bicicles.dart';
 import 'package:pedalpal/pages/home_page.dart';
+import 'package:pedalpal/pages/splash.dart';
 import './services/auth/widget_tree.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const WidgetTree(),
+      home: const Splash(),
     );
   }
 }
